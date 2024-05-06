@@ -2,8 +2,11 @@ from transformers import AutoModel, AutoTokenizer
 import gradio as gr
 import mdtex2html
 
-tokenizer = AutoTokenizer.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True)
-model = AutoModel.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True).half().cuda()
+#MODEL_PATH = os.environ.get('MODEL_PATH', 'F:\\learn\\AI\\carr001\\learn_ai\\third_party\\ChatGLM3\\THUDM\\chatglm3-6b')
+
+tokenizer = AutoTokenizer.from_pretrained("F:\\learn\\AI\\carr001\\learn_ai\\third_party\\ChatGLM-6b\\THUDM\\chatglm-6b", trust_remote_code=True)
+
+model = AutoModel.from_pretrained("F:\\learn\\AI\\carr001\\learn_ai\\third_party\\ChatGLM-6b\\THUDM\\chatglm-6b", trust_remote_code=True).half().cuda()
 model = model.eval()
 
 """Override Chatbot.postprocess"""
@@ -80,8 +83,7 @@ with gr.Blocks() as demo:
     with gr.Row():
         with gr.Column(scale=4):
             with gr.Column(scale=12):
-                user_input = gr.Textbox(show_label=False, placeholder="Input...", lines=10).style(
-                    container=False)
+                user_input = gr.Textbox(show_label=False, placeholder="Input...", lines=10)
             with gr.Column(min_width=32, scale=1):
                 submitBtn = gr.Button("Submit", variant="primary")
         with gr.Column(scale=1):
